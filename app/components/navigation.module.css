@@ -37,10 +37,7 @@
   font-weight: 500;
   transition: all 0.2s ease;
   position: relative;
-}
-
-.link:hover {
-  color: #16a34a;
+  padding: 4px 0;
 }
 
 /* 悬浮时的下划线小动画 */
@@ -57,6 +54,23 @@
 
 .link:hover::after {
   width: 100%;
+}
+
+.link:hover {
+  color: var(--primary-green);
+}
+
+.active {
+  color: var(--primary-green) !important;
+}
+
+.active::after {
+  width: 100% !important;
+}
+
+.activeBtn {
+  background-color: #15803d !important; 
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2);
 }
 
 .contactBtn {

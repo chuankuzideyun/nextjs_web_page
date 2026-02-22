@@ -1,5 +1,9 @@
+"use client";
+
 import styles from './page.module.css';
 import FAQItem from '../components/FAQItem';
+import FeedbackModal from '../components/FeedbackModal';
+import { useState } from 'react';
 
 const faqs = [
   {
@@ -17,6 +21,38 @@ const faqs = [
 ];
 
 export default function FAQ() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [question, setQuestion] = useState("");
+
+  const [modalConfig, setModalConfig] = useState({
+    type: "success",
+    title: "",
+    message: ""
+  });
+
+  const handleSubmit = () => {
+    if (question.trim() === "") {
+      // --- 情况 A: 输入为空 ---
+      setModalConfig({
+        type: "error",
+        title: "Empty Input",
+        message: "Please enter your question before submitting."
+      });
+      setIsModalOpen(true);
+      return;
+    }
+
+    // --- 情况 B: 提交成功 ---
+    console.log("Submitted:", question);
+    setModalConfig({
+      type: "success",
+      title: "Submission Successful!",
+      message: "Thank you for your question. We'll get back to you shortly."
+    });
+    setIsModalOpen(true);
+    setQuestion("");
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
@@ -40,16 +76,28 @@ export default function FAQ() {
 
         {/* Question Submission Section */}
         <section className={styles.submitSection}>
-          <h2>Didn't find your answer?</h2>
-          <p style={{color: '#666'}}>Type your question below and our team will get back to you.</p>
-          
-          <div className={styles.inputGroup}>
-            <input type="text" placeholder="Ask your question here..." />
-            <button className={styles.submitBtn}>Submit</button>
-          </div>
-        </section>
+        <div className={styles.inputGroup}>
+          <input 
+            type="text" 
+            placeholder="Ask your question here..." 
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
+          />
+          <button className={styles.submitBtn} onClick={handleSubmit}>
+            Submit
+          </button>
+        </div>
+      </section>
 
-      </div>
+      {/* FeedbackModal */}
+      <FeedbackModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        type={modalConfig.type}
+        title={modalConfig.title}
+        message={modalConfig.message}
+      />
     </div>
+  </div>
   );
 }
