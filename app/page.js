@@ -1,64 +1,43 @@
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./page.module.css";
 
 export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
+        {/* 图片区域：增加一张更符合主题的插图 */}
+        <div className={styles.heroImageWrapper}>
+          <Image
+            src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1000&auto=format&fit=crop"
+            alt="Workspace with plants"
+            width={500}
+            height={300}
+            className={styles.heroImage}
+            style={{ borderRadius: '32px', objectFit: 'cover' }}
+            priority
+          />
+        </div>
+
+        {/* 欢迎文字区域 */}
         <div className={styles.intro}>
-          <h1>To get started, edit the page.js file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <h1 className={styles.title}>
+            Welcome to <span className={styles.highlight}>GreenSpace</span>
+          </h1>
+          <p className={styles.subtitle}>
+            Your calm and sustainable digital hub. We provide the tools you 
+            need to grow your projects while staying connected to nature.
           </p>
         </div>
+
+        {/* 按钮区域 */}
         <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          <Link href="/about" className={styles.primary}>
+            Learn More
+          </Link>
+          <Link href="/contact" className={styles.secondary}>
+            Get Started
+          </Link>
         </div>
       </main>
     </div>

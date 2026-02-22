@@ -1,0 +1,159 @@
+.wrapper {
+  min-height: 100vh;
+  background-color: #f8faf9;
+  padding: 80px 24px;
+  font-family: sans-serif;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.header h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  letter-spacing: -1.5px;
+}
+
+.highlight {
+  color: #16a34a;
+}
+
+/* FAQ 列表部分 */
+/* 修改原有的 faqItem */
+.faqItem {
+  background: white;
+  border: 1px solid #f0fdf4;
+  border-radius: 20px;
+  overflow: hidden; /* 必须，为了隐藏折叠的内容 */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.03);
+}
+
+.faqItem.active {
+  border-color: #bbf7d0;
+  box-shadow: 0 10px 25px rgba(22, 163, 74, 0.08);
+}
+
+/* 按钮样式（重置 button 默认样式） */
+.questionButton {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.questionText {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  display: flex;
+  align-items: center;
+}
+
+/* 之前那个 Q 装饰可以放这里 */
+.questionText::before {
+  content: "Q";
+  color: #16a34a;
+  margin-right: 12px;
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+/* 箭头动画 */
+.icon {
+  font-size: 0.8rem;
+  color: #16a34a;
+  transition: transform 0.3s ease;
+  opacity: 0.6;
+}
+
+.iconRotate {
+  transform: rotate(180deg);
+}
+
+/* 平滑折叠动画核心代码 */
+.answerWrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: #fcfdfc; /* 展开后背景颜色微调 */
+}
+
+.answerWrapper.show {
+  max-height: 200px; /* 设置一个足够大的值 */
+}
+
+.answerContent {
+  padding: 0 24px 24px 56px; /* 56px 是为了对齐 Q 后面的文字 */
+  color: #666;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+/* 提交问题区域 */
+.submitSection {
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+  padding: 40px;
+  border-radius: 32px;
+  border: 2px dashed #bbf7d0;
+  text-align: center;
+}
+
+.submitSection h2 {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+  color: #15803d;
+}
+
+.inputGroup {
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
+}
+
+.inputGroup input {
+  flex: 1;
+  padding: 16px 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  outline: none;
+  font-size: 1rem;
+}
+
+.inputGroup input:focus {
+  border-color: #16a34a;
+  box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.1);
+}
+
+.submitBtn {
+  background: #16a34a;
+  color: white;
+  border: none;
+  padding: 0 30px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.submitBtn:hover {
+  background: #15803d;
+}
+
+@media (max-width: 640px) {
+  .inputGroup { flex-direction: column; }
+  .submitBtn { padding: 16px; }
+}

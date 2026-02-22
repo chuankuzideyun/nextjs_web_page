@@ -1,0 +1,73 @@
+.navbar {
+  /* 固定在顶部，并带有模糊效果 */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px); /* 毛玻璃效果 */
+  border-bottom: 1px solid rgba(22, 163, 74, 0.1);
+  padding: 1rem 2rem;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #16a34a;
+  text-decoration: none;
+  letter-spacing: -1px;
+}
+
+.navLinks {
+  display: flex;
+  gap: 2rem;
+}
+
+.link {
+  text-decoration: none;
+  color: #666;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.link:hover {
+  color: #16a34a;
+}
+
+/* 悬浮时的下划线小动画 */
+.link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #22c55e;
+  transition: width 0.3s ease;
+}
+
+.link:hover::after {
+  width: 100%;
+}
+
+.contactBtn {
+  background-color: #16a34a;
+  color: white !important;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+}
+
+.contactBtn:hover {
+  background-color: #15803d;
+  transform: translateY(-1px);
+}
