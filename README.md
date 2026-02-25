@@ -6,11 +6,12 @@ Welcome to **GreenSpace**, a clean, minimalist, and high-performance web templat
 ## Key Features
 
 * **Soothing Aesthetics**: A consistent light-green theme using custom CSS Modules.
-* **Modern Layout**: Features a glassmorphism (frosted glass) navigation bar and a centered hero section.
 * **Dynamic FAQ Section**: Interactive accordion-style FAQ with smooth transitions and a question submission area.
-* **Fully Responsive**: Optimized for desktops, tablets, and mobile devices.
 * **SEO Optimized**: Leveraging Next.js App Router metadata and image optimization.
-* **No Tailwind Needed**: Pure CSS Modules for developers who prefer standard CSS.
+* **Integrated AI Assistant**: A persistent floating AI assistant powered by Google Gemini 3 flash, providing real-time support.
+* **Firebase Authentication**: Secure user sign-in via Google OAuth for a personalized experience.
+* **Cloud Persistence**: Real-time chat history saving using Firebase Firestore, ensuring data persists across sessions.
+* **Secure Architecture**: Implemented environment variable protection and Firestore Security Rules to safeguard user data.
 
 ## Tech Stack
 
@@ -36,7 +37,7 @@ npm install
 
 ### 3. Run the development server
 ```bash
-npm install
+npm run dev
 ```
 
 ## Project Structure
@@ -52,3 +53,14 @@ npm install
 └── public/             # Static assets (SVGs, logos)
 ```
 
+## Environment Variables Setup
+
+# Google Gemini
+NEXT_PUBLIC_GEMINI_API_KEY=your_gemini_key
+```bash
+# Firebase Configuration
+NEXT_PUBLIC_FIREBASE_API_KEY=...
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=...
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=...
+# ... (and other Firebase fields)
+```
