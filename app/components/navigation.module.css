@@ -85,3 +85,38 @@
   background-color: #15803d;
   transform: translateY(-1px);
 }
+
+.authSection {
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--primary-green);
+}
+
+.loginBtn, .logoutBtn {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--primary-green);
+  background: transparent;
+  color: var(--primary-green);
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.loginBtn:hover {
+  background: var(--primary-green);
+  color: #15803d;
+}

@@ -2,12 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useAuth } from "../context/AuthContext";
 import styles from "./navigation.module.css";
 
 export default function Navigation() {
   const pathname = usePathname(); 
 
   const isActive = (path) => pathname === path;
+  const { user, loginWithGoogle, logout } = useAuth();
 
   return (
     <nav className={styles.navbar}>
@@ -48,6 +50,18 @@ export default function Navigation() {
           >
             Contact
           </Link>
+        </div>
+        <div className={styles.authSection}>
+          {user ? (
+            <div className={styles.userInfo}>
+              <img src={user.photoURL} alt="avatar" className={styles.avatar} />
+              <button onClick={logout} className={styles.logoutBtn}>Logout</button>
+            </div>
+          ) : (
+            <button onClick={loginWithGoogle} className={styles.loginBtn}>
+              Sign in
+            </button>
+          )}
         </div>
       </div>
     </nav>
