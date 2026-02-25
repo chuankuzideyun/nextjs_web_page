@@ -15,10 +15,12 @@ Welcome to **GreenSpace**, a clean, minimalist, and high-performance web templat
 
 ## Tech Stack
 
-* **Framework**: [Next.js](https://nextjs.org/) (App Router)
 * **Language**: JavaScript / React
-* **Styling**: CSS Modules (Standard CSS)
 * **Images**: Unsplash via `next/image`
+* **Frontend**: Next.js (App Router), React, CSS Modules
+* **AI Engine**: Google Gemini AI API
+* **Backend as a Service**: Firebase (Auth & Firestore)
+* **Deployment**: Vercel (CI/CD)
 
 ## Getting Started
 
