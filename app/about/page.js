@@ -25,7 +25,7 @@ export default function About() {
 
           <div className={`${styles.card} ${styles.greenCard}`}>
             <h3>Get in Touch</h3>
-            <p>Let's create something beautiful together.</p>
+            <p>Let us create something beautiful together.</p>
             <button className={styles.button}>
                 <Link href="/contact" className={styles.button}>
                     Contact Us
