@@ -13,6 +13,7 @@ export default function Contact() {
   });
 
   // 弹窗状态
+  const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalConfig, setModalConfig] = useState({
     type: "success",
@@ -25,35 +26,60 @@ export default function Contact() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault(); // 阻止页面刷新
-
-    // 1. 校验：确保所有字段都不为空
-    if (!formData.name || !formData.email || !formData.message) {
-      setModalConfig({
-        type: "error",
-        title: "Missing Information",
-        message: "Please fill in all fields before sending your message."
-      });
-      setIsModalOpen(true);
-      return;
-    }
-
-    // 2. 模拟提交逻辑
-    console.log("Form Submitted:", formData);
-    
-    // 3. 显示成功弹窗
+  const handleSubmit = async (e) => { 
+  e.preventDefault(); 
+  
+  // 1. 校验：确保所有字段都不为空
+  if (!formData.name || !formData.email || !formData.message) {
     setModalConfig({
-      type: "success",
-      title: "Message Sent!",
-      message: "We've received your message and will get back to you at " + formData.email + " soon."
+      type: "error",
+      title: "Missing Information",
+      message: "Please fill in all fields before sending your message."
     });
     setIsModalOpen(true);
+    return;
+  }
 
-    // 4. 成功后重置表单
-    setFormData({ name: "", email: "", message: "" });
-  };
+  setLoading(true); 
 
+  try {
+    // 2. 真实提交逻辑：调用我们刚才写的后端 API
+    const response = await fetch('/api/send', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      // 3. 显示成功弹窗
+      setModalConfig({
+        type: "success",
+        title: "Message Sent!",
+        message: `Thanks ${formData.name}! We've received your message and will get back to you at ${formData.email} soon.`
+      });
+      // 4. 成功后重置表单
+      setFormData({ name: "", email: "", message: "" });
+    } else {
+      throw new Error(result.error || "Failed to send email");
+    }
+
+  } catch (error) {
+    // 5. 显示错误弹窗
+    console.error("Submission Error:", error);
+    setModalConfig({
+      type: "error",
+      title: "Submission Failed",
+      message: "Something went wrong while sending your message. Please try again later."
+    });
+  } finally {
+    setLoading(false); 
+    setIsModalOpen(true);
+  }
+};
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
@@ -64,7 +90,7 @@ export default function Contact() {
           <p>Drop us a message and we will get back to you as soon as possible.</p>
           <div className={styles.contactDetail}>
             <span className={styles.label}>Email Us</span>
-            <span className={styles.value}>hello@example.com</span>
+            <span className={styles.value}>******36@gmail.com</span>
           </div>
         </div>
 
