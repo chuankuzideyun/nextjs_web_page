@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuth } from "../context/AuthContext";
 import styles from "./navigation.module.css";
+import Image from 'next/image';
 
 export default function Navigation() {
   const pathname = usePathname(); 
@@ -54,7 +55,14 @@ export default function Navigation() {
         <div className={styles.authSection}>
           {user ? (
             <div className={styles.userInfo}>
-              <img src={user.photoURL} alt="avatar" className={styles.avatar} />
+              <Image 
+                src={user.photoURL || "/default-avatar.png"} 
+                alt="user avatar" 
+                width={32}           
+                height={32}          
+                className={styles.avatar} 
+                unoptimized={true}   
+              />
               <button onClick={logout} className={styles.logoutBtn}>Logout</button>
             </div>
           ) : (
