@@ -1,0 +1,22 @@
+name: DAST Security Scan (OWASP ZAP)
+
+on:
+  schedule:
+    - cron: '0 0 * * 0' # 每周日午夜自动运行
+  workflow_dispatch: # 允许你手动点击按钮触发
+
+jobs:
+  zap_scan:
+    runs-on: ubuntu-latest
+    name: Scan the web application
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: ZAP Baseline Scan
+        uses: zaproxy/action-baseline@v0.12.0
+        with:
+          target: 'https://greenspace-beige.vercel.app/' 
+          # 允许忽略一些低危警告，防止流程总是报红
+          fail_action: false 
+          issue_title: 'Security Vulnerabilities Found by DAST Scan'

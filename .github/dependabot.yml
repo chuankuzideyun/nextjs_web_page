@@ -1,0 +1,11 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/" # 根目录下的 package.json
+    schedule:
+      interval: "daily" 
+    open-pull-requests-limit: 5 
+    groups:
+      dependencies:
+        patterns:
+          - "*" # 将所有更新聚合，减少 PR 数量
