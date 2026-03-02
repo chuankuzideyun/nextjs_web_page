@@ -1,0 +1,42 @@
+name: DevSecOps Security Scan
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: npm install
+
+      # 1. SAST 扫描 (静态代码分析)
+      - name: Run Snyk Open Source Scan
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high 
+
+      # 2. Dependency 扫描 (检查 node_modules)
+      - name: Run npm audit
+        run: npm audit --audit-level=high
+
+      # 3. Secret 扫描 (额外保护)
+      - name: Run Snyk Code Scan (Check for hardcoded keys)
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          command: code test

@@ -26,6 +26,14 @@ jobs:
       - name: Run Linting
         run: npm run lint
 
+      - name: Snyk Security Scan
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          # 'test' 检查已知漏洞，'code test' 检查你写的代码中的逻辑漏洞
+          command: code test
+
       - name: Build Project
         run: npm run build
         env:
