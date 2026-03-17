@@ -9,18 +9,18 @@
     "lint": "eslint . --fix"
   },
   "dependencies": {
-    "firebase": "^12.9.0",
-    "next": "16.1.6",
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
-    "resend": "^6.9.3"
+    "firebase": "^12.10.0",
+    "next": "16.1.7",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "resend": "^6.9.4"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.24",
+    "autoprefixer": "^10.4.27",
     "babel-plugin-react-compiler": "1.0.0",
-    "eslint": "^9",
-    "eslint-config-next": "16.1.6",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^4.2.0"
+    "eslint": "^10",
+    "eslint-config-next": "16.1.7",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^4.2.1"
   }
 }
